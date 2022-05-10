@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 #if defined(__x86_64__) || defined(_M_X64) || defined(_M_AMD64) || defined(__amd64) || defined(__amd64__) || defined (__x86_64) || defined(__x86_64__)
 	#define  x86_64
 #elif defined(i386) || defined(__i386__) || defined(__i386) || defined(_M_IX86)

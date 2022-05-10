@@ -11,14 +11,16 @@ int main()
 {
 	char* src = malloc(SIZE);
 	if (!src)
-		return;
+		return 1;
 	for (size_t i = 0; i < SIZE; i++)
 		src[i] = i;
 
 	char* dst = malloc(SIZE);
 	if (!dst)
-		return;
+		return 1;
 
 	for (size_t i = 0; i < 5000; i++)
 		FAST_MEMCPY(dst, src, SIZE);
+
+	return 0;
 }
