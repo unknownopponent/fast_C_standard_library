@@ -19,5 +19,6 @@ int main()
 	if (!dst)
 		return;
 
-	FAST_MEMCPY(dst, src, SIZE);
+	for (size_t i = 0; i < 5000; i++)
+		FAST_MEMCPY(dst, src, SIZE);
 }

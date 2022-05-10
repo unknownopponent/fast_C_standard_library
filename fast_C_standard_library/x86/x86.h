@@ -22,5 +22,7 @@
 	#define AVX2
 #endif
 
+#if defined(x86_64) || defined(x86_32)
 extern uint64_t cpuid_sse();
 extern uint64_t cpuid_avx();
+#endif

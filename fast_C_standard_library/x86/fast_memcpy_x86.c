@@ -6,6 +6,8 @@
 
 #include <immintrin.h>
 
+void(*fast_memcpy_runtime)(void*, void*, size_t) = fast_memcpy_runtime_select;
+
 void fast_memcpy_runtime_select(void* dest, void* src, size_t size)
 {
 	if (cpuid_sse())
