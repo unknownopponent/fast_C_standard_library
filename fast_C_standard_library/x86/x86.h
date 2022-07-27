@@ -26,5 +26,30 @@
 
 #if defined(x86_64) || defined(x86_32)
 extern uint64_t cpuid_sse();
+
 extern uint64_t cpuid_avx();
+#endif
+
+#if defined(__GNUC__) || defined(__clang__)
+
+#define SSE_TARGET __attribute__ ((__target__ ("sse")))
+#define SSE2_TARGET __attribute__ ((__target__ ("sse2")))
+#define SSE3_TARGET __attribute__ ((__target__ ("sse3")))
+#define SSE41_TARGET __attribute__ ((__target__ ("sse4.1")))
+#define SSE42_TARGET __attribute__ ((__target__ ("sse4.2")))
+
+#define AVX_TARGET __attribute__ ((__target__ ("avx")))
+#define AVX2_TARGET __attribute__ ((__target__ ("avx2")))
+
+#else
+
+#define SSE_TARGET
+#define SSE2_TARGET
+#define SSE3_TARGET
+#define SSE41_TARGET 
+#define SSE42_TARGET 
+
+#define AVX_TARGET 
+#define AVX2_TARGET 
+
 #endif

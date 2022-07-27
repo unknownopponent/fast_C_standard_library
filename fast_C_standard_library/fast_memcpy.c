@@ -2,7 +2,7 @@
 
 void fast_memcpy(void* dest, void* src, size_t size)
 {
-	while (size > 128)
+	while (size > 127)
 	{
 		*((uint64_t*)dest) = *((uint64_t*)src);
 		*((uint64_t*)dest + 1) = *((uint64_t*)src + 1);
@@ -24,7 +24,7 @@ void fast_memcpy(void* dest, void* src, size_t size)
 		src = (uint64_t*)src + 16;
 		size -= 128;
 	}
-	while (size > 64)
+	while (size > 63)
 	{
 		*((uint64_t*)dest) = *((uint64_t*)src);
 		*((uint64_t*)dest + 1) = *((uint64_t*)src + 1);
@@ -38,7 +38,7 @@ void fast_memcpy(void* dest, void* src, size_t size)
 		src = (uint64_t*)src + 8;
 		size -= 64;
 	}
-	while (size > 32)
+	while (size > 31)
 	{
 		*((uint64_t*)dest) = *((uint64_t*)src);
 		*((uint64_t*)dest + 1) = *((uint64_t*)src + 1);
@@ -48,7 +48,7 @@ void fast_memcpy(void* dest, void* src, size_t size)
 		src = (uint64_t*)src + 4;
 		size -= 32;
 	}
-	while (size > 16)
+	while (size > 15)
 	{
 		*((uint64_t*)dest) = *((uint64_t*)src);
 		*((uint64_t*)dest + 1) = *((uint64_t*)src + 1);
@@ -56,28 +56,28 @@ void fast_memcpy(void* dest, void* src, size_t size)
 		src = (uint64_t*)src + 2;
 		size -= 16;
 	}
-	while (size > 8)
+	while (size > 7)
 	{
 		*((uint64_t*)dest) = *((uint64_t*)src);
 		dest = (uint64_t*)dest + 1;
 		src = (uint64_t*)src + 1;
 		size -= 8;
 	}
-	while (size > 4)
+	while (size > 3)
 	{
 		*((uint32_t*)dest) = *((uint32_t*)src);
 		dest = (uint32_t*)dest + 1;
 		src = (uint32_t*)src + 1;
 		size -= 4;
 	}
-	while (size > 2)
+	while (size > 1)
 	{
 		*((uint16_t*)dest) = *((uint16_t*)src);
 		dest = (uint16_t*)dest + 1;
 		src = (uint16_t*)src + 1;
 		size -= 2;
 	}
-	while (size > 1)
+	while (size > 0)
 	{
 		*((uint8_t*)dest) = *((uint8_t*)src);
 		dest = (uint8_t*)dest + 1;
