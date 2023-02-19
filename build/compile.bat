@@ -1,25 +1,17 @@
 @echo off
 
 if "%1" == "" (
-	echo usage : compile.bat test_file_path
-	exit /b 1
-)
-
-nasm -f elf64 -o cpuid.o ../fast_C_standard_library/x86/cpuid.asm
-
-if %errorlevel% neq 0 (
-	echo nasm failled
+	echo usage : compile.bat function
 	exit /b 1
 )
 
 gcc ^
 	-I ../fast_C_standard_library/ ^
-	-I ../fast_C_standard_library/x86 ^
-	../fast_C_standard_library/*.c ^
-	../fast_C_standard_library/x86/*.c ^
-	./*.o ^
-	-O3 ^
-	%1 ^
+	../fast_C_standard_library/*%1*.c ^
+	../fast_C_standard_library/x86/*%1*.c ^
+	../test/*%1* ^
+	-O3 -march=native -funroll-loops ^
+	-Wno-incompatible-function-pointer-types -Wno-incompatible-pointer-types ^
 	-o test.exe
 
 if %errorlevel% neq 0 (

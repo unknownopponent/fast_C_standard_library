@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdint.h>
-
 #if defined(__x86_64__) || defined(_M_X64) || defined(_M_AMD64) || defined(__amd64) || defined(__amd64__) || defined (__x86_64) || defined(__x86_64__)
 	#define  x86_64
 #elif defined(i386) || defined(__i386__) || defined(__i386) || defined(_M_IX86)
@@ -25,10 +23,6 @@
 #endif
 
 #if defined(x86_64) || defined(x86_32)
-extern uint64_t cpuid_sse();
-
-extern uint64_t cpuid_avx();
-#endif
 
 #if defined(__GNUC__) || defined(__clang__)
 
@@ -53,3 +47,13 @@ extern uint64_t cpuid_avx();
 #define AVX2_TARGET 
 
 #endif
+
+#ifdef __GUNC__
+#include <x86intrin.h>
+#elif defined(_MSC_VER)
+#include <intrin.h>
+#else
+#include <immintrin.h>
+#endif
+
+#endif // x86

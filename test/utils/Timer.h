@@ -60,3 +60,14 @@ uint64_t end(Timer* timer)
 }
 
 #endif
+
+void print_nano(uint64_t nano)
+{
+	if (nano >= 1000000000)
+		printf("%llus ", nano / 1000000000);
+	if (nano >= 1000000)
+		printf("%llums ", (nano / 1000000) % 1000);
+	if (nano >= 1000)
+		printf("%lluus ", (nano / 1000) % 1000);
+	printf("%lluns", nano % 1000);
+}
