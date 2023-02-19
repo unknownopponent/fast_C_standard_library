@@ -99,7 +99,7 @@ void* fast_memmove(void* destination, void* source, size_t size)
 			*(int8_t*)destination = *(int8_t*)source;
 			source = (int8_t*)source - 1;
 			destination = (int8_t*)destination - 1;
-			size -= 1;
+			size -= sizeof(int8_t);
 		}
 	}
 	return dest;

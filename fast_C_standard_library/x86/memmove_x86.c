@@ -75,7 +75,7 @@ SSE_TARGET void* fast_memmove_sse(void* destination, void* source, size_t size)
 			*(int8_t*)destination = *(int8_t*)source;
 			source = (int8_t*)source - 1;
 			destination = (int8_t*)destination - 1;
-			size -= 1;
+			size -= sizeof(int8_t);
 		}
 	}
 	return dest;
@@ -153,7 +153,7 @@ AVX_TARGET void* fast_memmove_avx(void* destination, void* source, size_t size)
 			*(int8_t*)destination = *(int8_t*)source;
 			source = (int8_t*)source - 1;
 			destination = (int8_t*)destination - 1;
-			size -= 1;
+			size -= sizeof(int8_t);
 		}
 	}
 	return dest;
@@ -220,7 +220,7 @@ SSE_TARGET void* fast_memmove_sse_nt(void* destination, void* source, size_t siz
 				*(int8_t*)destination = *(int8_t*)source;
 				source = (int8_t*)source - 1;
 				destination = (int8_t*)destination - 1;
-				size -= 1;
+				size -= sizeof(int8_t);
 			}
 
 			destination = (int8_t*)destination + sizeof(int8_t) - sizeof(__m128);
@@ -252,9 +252,10 @@ SSE_TARGET void* fast_memmove_sse_nt(void* destination, void* source, size_t siz
 			*(int8_t*)destination = *(int8_t*)source;
 			source = (int8_t*)source - 1;
 			destination = (int8_t*)destination - 1;
-			size -= 1;
+			size -= sizeof(int8_t);
 		}
 	}
+	_mm_sfence();
 	return dest;
 }
 
@@ -318,7 +319,7 @@ AVX_TARGET void* fast_memmove_avx_nt(void* destination, void* source, size_t siz
 				*(int8_t*)destination = *(int8_t*)source;
 				source = (int8_t*)source - 1;
 				destination = (int8_t*)destination - 1;
-				size -= 1;
+				size -= sizeof(int8_t);
 			}
 
 			destination = (int8_t*)destination + sizeof(int8_t) - sizeof(__m256);
@@ -350,9 +351,10 @@ AVX_TARGET void* fast_memmove_avx_nt(void* destination, void* source, size_t siz
 			*(int8_t*)destination = *(int8_t*)source;
 			source = (int8_t*)source - 1;
 			destination = (int8_t*)destination - 1;
-			size -= 1;
+			size -= sizeof(int8_t);
 		}
 	}
+	_mm_sfence();
 	return dest;
 }
 

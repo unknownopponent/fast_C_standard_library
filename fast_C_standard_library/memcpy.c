@@ -10,18 +10,18 @@ void dummy_memcpy(void* restrict dest, void* restrict src, size_t size)
 
 void fast_memcpy(void* restrict dest, void* restrict src, size_t size)
 {
-	while (size > 7)
+	while (size >= sizeof(int64_t))
 	{
-		*((uint64_t*)dest) = *((uint64_t*)src);
-		dest = (uint64_t*)dest + 1;
-		src = (uint64_t*)src + 1;
-		size -= 8;
+		*((int64_t*)dest) = *((int64_t*)src);
+		dest = (int64_t*)dest + 1;
+		src = (int64_t*)src + 1;
+		size -= sizeof(int64_t);
 	}
-	while (size > 0)
+	while (size)
 	{
-		*((uint8_t*)dest) = *((uint8_t*)src);
-		dest = (uint8_t*)dest + 1;
-		src = (uint8_t*)src + 1;
-		size -= 1;
+		*((int8_t*)dest) = *((int8_t*)src);
+		dest = (int8_t*)dest + 1;
+		src = (int8_t*)src + 1;
+		size -= sizeof(int8_t);
 	}
 }

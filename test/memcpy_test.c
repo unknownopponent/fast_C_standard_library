@@ -59,7 +59,7 @@ char test()
 		}
 	}
 
-	puts("example passed\n");
+	puts("tests passed\n");
 
 	return 0;
 }
@@ -128,6 +128,9 @@ char benchmarks()
 
 	volatile void* (*memcpy_nt_funct[])(void*, void*, size_t) = {
 		dummy_memcpy,
+		fast_memcpy,
+		fast_memcpy_sse,
+		fast_memcpy_avx,
 		fast_memcpy_nt_sse,
 		fast_memcpy_nt_avx,
 		memcpy
@@ -135,6 +138,9 @@ char benchmarks()
 
 	char* nt_names[] = {
 		"dummy_memcpy",
+		"fast_memcpy",
+		"fast_memcpy_sse",
+		"fast_memcpy_avx",
 		"fast_memcpy_nt_sse",
 		"fast_memcpy_nt_avx",
 		"memcpy"
@@ -169,7 +175,7 @@ int main(void)
 {
 	if (test())
 	{
-		fprintf(stderr, "memcpy example failled\n");
+		fprintf(stderr, "memcpy test failled\n");
 		return 1;
 	}
 	if (benchmarks())
